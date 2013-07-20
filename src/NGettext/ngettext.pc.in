@@ -1,0 +1,6 @@
+Name: NGettext
+Description: NGettext
+Version: 0.1
+
+Requires: 
+Libs: -r:@expanded_libdir@/@PACKAGE@/NGettext.dll

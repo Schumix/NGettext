@@ -79,14 +79,14 @@ EXTRAS = \
 	ngettext.tests.pc.in 
 
 REFERENCES =  \
-	nunit.framework \
 	System \
 	System.Core \
 	System.Xml.Linq \
 	System.Data.DataSetExtensions \
 	Microsoft.CSharp \
 	System.Data \
-	System.Xml
+	System.Xml \
+	$(MONO_NUNIT_LIBS)
 
 DLL_REFERENCES = 
 

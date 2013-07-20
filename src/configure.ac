@@ -50,6 +50,7 @@ fi
 
 
 dnl package checks, common for all configs
+PKG_CHECK_MODULES([MONO_NUNIT], [mono-nunit])
 
 dnl package checks, per config
 

@@ -1,4 +1,4 @@
-NGettext
+NGettext [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Schumix/ngettext/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ========
 
 Copyright (C) 2012 Neris Ereptoris <http://neris.ws/>.

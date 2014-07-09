@@ -1,4 +1,4 @@
-NGettext [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Schumix/ngettext/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+NGettext [![Build Status](https://travis-ci.org/Schumix/NGettext.png?branch=master)](https://travis-ci.org/Schumix/NGettext) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Schumix/ngettext/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ========
 
 Copyright (C) 2012 Neris Ereptoris <http://neris.ws/>.

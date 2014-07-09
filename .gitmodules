@@ -1,0 +1,3 @@
+[submodule "src/External/nunit-framework"]
+	path = src/External/nunit-framework
+	url = git://github.com/Schumix/nunit-framework.git

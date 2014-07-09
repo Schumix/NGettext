@@ -46,7 +46,6 @@ fi
 
 
 dnl package checks, common for all configs
-PKG_CHECK_MODULES([MONO_NUNIT], [mono-nunit])
 
 dnl package checks, per config
 
@@ -54,6 +53,8 @@ dnl package checks, per config
 AC_CONFIG_FILES([
 NGettext/ngettext.pc
 NGettext/Makefile
+External/nunit-framework/src/framework/nunit.framework.schumix.pc
+External/nunit-framework/src/framework/Makefile
 NGettext.Tests/ngettext.tests.pc
 NGettext.Tests/Makefile
 Makefile

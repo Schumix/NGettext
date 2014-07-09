@@ -20,6 +20,9 @@ Global
 		{B150FBC7-210F-4E79-B18D-3E45532067AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B150FBC7-210F-4E79-B18D-3E45532067AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = NGettext\NGettext.csproj
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

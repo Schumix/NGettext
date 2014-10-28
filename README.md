@@ -1,4 +1,4 @@
-NGettext [![Build Status](https://travis-ci.org/Schumix/NGettext.png?branch=master)](https://travis-ci.org/Schumix/NGettext) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Schumix/ngettext/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+NGettext [![Build Status](https://travis-ci.org/Schumix/NGettext.svg?branch=master)](https://travis-ci.org/Schumix/NGettext) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Schumix/ngettext/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ========
 
 Copyright (C) 2012 Neris Ereptoris <http://neris.ws/>.
@@ -73,7 +73,7 @@ Now you can use NGettext in your code:
 
 	catalog.GetPluralString("You have {0} apple.", "You have {0} apples.", 5, 5);
 	// Returns translated plural massage: "You have 5 apples." (for en_US locale)
-	// First ì5î used in plural forms determination; second ó in String.Format method
+	// First ‚Äú5‚Äù used in plural forms determination; second ‚Äî in String.Format method
 ```
 
 

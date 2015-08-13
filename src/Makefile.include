@@ -66,12 +66,12 @@ programfilesdir = $(pkglibdir)
 programfiles_DATA = $(ASSEMBLY)
 bin_SCRIPTS = $(BINARIES)
 
+programfilestestresourceslocalesrurulcmessagesdir = @libdir@/@PACKAGE@/TestResources/locales/ru_RU/LC_MESSAGES
+programfilestestresourceslocalesrurulcmessages_DATA = $(PROGRAMFILES_TESTRESOURCES_LOCALES_RU_RU_LC_MESSAGES)
 programfilesdir = @libdir@/@PACKAGE@
 programfiles_DATA = $(PROGRAMFILES)
 linuxpkgconfigdir = @libdir@/pkgconfig
 linuxpkgconfig_DATA = $(LINUX_PKGCONFIG)
-programfilestestresourceslocalesrurulcmessagesdir = @libdir@/@PACKAGE@/TestResources/locales/ru_RU/LC_MESSAGES
-programfilestestresourceslocalesrurulcmessages_DATA = $(PROGRAMFILES_TESTRESOURCES_LOCALES_RU_RU_LC_MESSAGES)
 
 
 # macros

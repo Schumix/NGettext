@@ -11,7 +11,7 @@ ASSEMBLY_MDB = $(ASSEMBLY).mdb
 COMPILE_TARGET = library
 PROJECT_REFERENCES =  \
 	../NGettext/bin/Debug/NGettext.dll \
-	../External/nunit-framework/bin/Debug/net-4.0/nunit.framework.dll
+	../External/nunit-framework/src/bin/Debug/net-4.0/nunit.framework.dll
 BUILD_DIR = bin/Debug/
 
 TESTS_DLL_MDB_SOURCE=bin/Debug/Tests.dll.mdb
@@ -21,8 +21,8 @@ TEST_PO_SOURCE=TestResources/locales/ru_RU/LC_MESSAGES/Test.po
 NGETTEXT_DLL_SOURCE=../NGettext/bin/Debug/NGettext.dll
 NGETTEXT_DLL_MDB_SOURCE=../NGettext/bin/Debug/NGettext.dll.mdb
 NGETTEXT_DLL_MDB=$(BUILD_DIR)/NGettext.dll.mdb
-NUNIT_FRAMEWORK_DLL_SOURCE=../External/nunit-framework/bin/Debug/net-4.0/nunit.framework.dll
-NUNIT_FRAMEWORK_DLL_MDB_SOURCE=../External/nunit-framework/bin/Debug/net-4.0/nunit.framework.dll.mdb
+NUNIT_FRAMEWORK_DLL_SOURCE=../External/nunit-framework/src/bin/Debug/net-4.0/nunit.framework.dll
+NUNIT_FRAMEWORK_DLL_MDB_SOURCE=../External/nunit-framework/src/bin/Debug/net-4.0/nunit.framework.dll.mdb
 NUNIT_FRAMEWORK_DLL_MDB=$(BUILD_DIR)/nunit.framework.dll.mdb
 
 endif
@@ -35,7 +35,7 @@ ASSEMBLY_MDB =
 COMPILE_TARGET = library
 PROJECT_REFERENCES =  \
 	../NGettext/bin/Release/NGettext.dll \
-	../External/nunit-framework/bin/Release/net-4.0/nunit.framework.dll
+	../External/nunit-framework/src/bin/Release/net-4.0/nunit.framework.dll
 BUILD_DIR = bin/Release/
 
 TESTS_DLL_MDB=
@@ -43,7 +43,7 @@ TEST_MO_SOURCE=TestResources/locales/ru_RU/LC_MESSAGES/Test.mo
 TEST_PO_SOURCE=TestResources/locales/ru_RU/LC_MESSAGES/Test.po
 NGETTEXT_DLL_SOURCE=../NGettext/bin/Release/NGettext.dll
 NGETTEXT_DLL_MDB=
-NUNIT_FRAMEWORK_DLL_SOURCE=../External/nunit-framework/bin/Release/net-4.0/nunit.framework.dll
+NUNIT_FRAMEWORK_DLL_SOURCE=../External/nunit-framework/src/bin/Release/net-4.0/nunit.framework.dll
 NUNIT_FRAMEWORK_DLL_MDB=
 
 endif
@@ -73,7 +73,8 @@ all: $(ASSEMBLY) $(PROGRAMFILES) $(PROGRAMFILES_TESTRESOURCES_LOCALES_RU_RU_LC_M
 FILES = \
 	BaseCatalogTest.cs \
 	Loaders/MoFileParserTest.cs \
-	Plural/PluralFormProcessorTest.cs \
+	Plural/PluralRuleTest.cs \
+	Plural/DefaultPluralRuleGeneratorTest.cs \
 	Properties/AssemblyInfo.cs \
 	Stabs/EmptyBaseCatalog.cs \
 	CatalogTest.cs 

@@ -47,8 +47,14 @@ all: $(ASSEMBLY) $(PROGRAMFILES) $(LINUX_PKGCONFIG)
 FILES = \
 	Catalog.cs \
 	ICatalog.cs \
+	Loaders/BigEndianBinaryReader.cs \
+	Loaders/ReadOnlyStreamWrapper.cs \
 	Loaders/MoFileParser.cs \
-	Plural/PluralFormProcessor.cs \
+	Plural/IPluralRule.cs \
+	Plural/PluralRule.cs \
+	Plural/IPluralRuleGenerator.cs \
+	Plural/PluralRuleEvaluatorDelegate.cs \
+	Plural/DefaultPluralRuleGenerator.cs \
 	Properties/AssemblyInfo.cs \
 	BaseCatalog.cs 
 

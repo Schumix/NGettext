@@ -53,8 +53,8 @@ dnl package checks, per config
 AC_CONFIG_FILES([
 NGettext/ngettext.pc
 NGettext/Makefile
-External/nunit-framework/src/framework/nunit.framework.schumix.pc
-External/nunit-framework/src/framework/Makefile
+External/nunit-framework/src/NUnitFramework/framework/nunit.framework.schumix.pc
+External/nunit-framework/src/NUnitFramework/framework/Makefile
 NGettext.Tests/ngettext.tests.pc
 NGettext.Tests/Makefile
 Makefile

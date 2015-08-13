@@ -6,10 +6,9 @@ using System.Globalization;
 
 using NUnit.Framework;
 
-using NGettext;
-using Tests.Stabs;
+using NGettext.Tests.Stabs;
 
-namespace Tests
+namespace NGettext.Tests
 {
 	[TestFixture]
 	public class BaseCatalogTest
@@ -29,11 +28,13 @@ namespace Tests
 			t.Translations.Add("key1", new[] { "value1" });
 			t.Translations.Add("key2", new[] { "value2" });
 			t.Translations.Add("key3", new[] { "value3plural1", "value3plural2" });
+			t.Translations.Add("", new[] { "emptyIdValue" });
 
 			Assert.AreEqual("value1", t.GetString("key1"));
 			Assert.AreEqual("value2", t.GetString("key2"));
 			Assert.AreEqual("value3plural1", t.GetString("key3"));
 			Assert.AreEqual("notFoundKey2", t.GetString("notFoundKey2"));
+			Assert.AreEqual("", t.GetString(""));
 		}
 
 		[Test]
@@ -44,6 +45,16 @@ namespace Tests
 			Assert.AreEqual("Foo bar", t.GetString("Foo {0}", "bar"));
 			Assert.AreEqual("Foo bar baz", t.GetString("Foo {0} {1}", "bar", "baz"));
 			Assert.AreEqual("Foo 1 2", t.GetString("Foo {0} {1}", 1, 2));
+		}
+
+		[Test]
+		public void TestGetStringFormatCulture()
+		{
+			var catalogEn = new EmptyBaseCatalog(new CultureInfo("en-US"));
+			var catalogRu = new EmptyBaseCatalog(new CultureInfo("ru-RU"));
+
+			Assert.AreEqual("Foo 1.23", catalogEn.GetString("Foo {0}", 1.23));
+			Assert.AreEqual("Foo 1,23", catalogRu.GetString("Foo {0}", 1.23));
 		}
 
 		#endregion
@@ -97,6 +108,16 @@ namespace Tests
 			Assert.AreEqual("He has 5 apples", t.GetPluralString("He has {0} apple", "He has {0} apples", 5, 5));
 		}
 
+		[Test]
+		public void TestGetPluralStringFormatCulture()
+		{
+			var catalogEn = new EmptyBaseCatalog(new CultureInfo("en-US"));
+			var catalogRu = new EmptyBaseCatalog(new CultureInfo("ru-RU"));
+
+			Assert.AreEqual("Foo 1.23", catalogEn.GetPluralString("Foo {0}", "Foo {0}", (long)1.23, 1.23));
+			Assert.AreEqual("Foo 1,23", catalogRu.GetPluralString("Foo {0}", "Foo {0}", (long)1.23, 1.23));
+		}
+
 		#endregion
 
 		#region GetParticularString
@@ -122,6 +143,16 @@ namespace Tests
 
 			Assert.AreEqual("Foo bar", t.GetParticularString("context", "Foo {0}", "bar"));
 			Assert.AreEqual("Foo bar baz", t.GetParticularString("context", "Foo {0} {1}", "bar", "baz"));
+		}
+
+		[Test]
+		public void TestGetParticularStringFormatCulture()
+		{
+			var catalogEn = new EmptyBaseCatalog(new CultureInfo("en-US"));
+			var catalogRu = new EmptyBaseCatalog(new CultureInfo("ru-RU"));
+
+			Assert.AreEqual("Foo 1.23", catalogEn.GetParticularString("context", "Foo {0}", 1.23));
+			Assert.AreEqual("Foo 1,23", catalogRu.GetParticularString("context", "Foo {0}", 1.23));
 		}
 
 		#endregion
@@ -150,6 +181,16 @@ namespace Tests
 			Assert.AreEqual("Bar bar", t.GetParticularPluralString("context", "Foo {0}", "Bar {0}", 2, "bar"));
 			Assert.AreEqual("Foo bar baz", t.GetParticularPluralString("context", "Foo {0} {1}", "Bar {0} {1}", 1, "bar", "baz"));
 			Assert.AreEqual("Bar bar baz", t.GetParticularPluralString("context", "Foo {0} {1}", "Bar {0} {1}", 2, "bar", "baz"));
+		}
+
+		[Test]
+		public void TestGetParticularPluralStringFormatCulture()
+		{
+			var catalogEn = new EmptyBaseCatalog(new CultureInfo("en-US"));
+			var catalogRu = new EmptyBaseCatalog(new CultureInfo("ru-RU"));
+
+			Assert.AreEqual("Foo 1.23", catalogEn.GetParticularPluralString("context", "Foo {0}", "Foo {0}", (long)1.23, 1.23));
+			Assert.AreEqual("Foo 1,23", catalogRu.GetParticularPluralString("context", "Foo {0}", "Foo {0}", (long)1.23, 1.23));
 		}
 
 		#endregion

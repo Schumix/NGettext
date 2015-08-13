@@ -1,17 +1,17 @@
 NGettext [![Build Status](https://travis-ci.org/Schumix/NGettext.svg?branch=master)](https://travis-ci.org/Schumix/NGettext) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Schumix/ngettext/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 ========
 
-Copyright (C) 2012 Neris Ereptoris <http://neris.ws/>.
+Copyright (C) 2012,2015 Neris Ereptoris <http://neris.ws/>.
 
 
 Just another one GNU/Gettext implementation for .NET.
 Requires Microsoft .NET Framework 2.0 or higher or Mono.
 
 This implementation loads translations directly from gettext *.mo files (no need to compile a satellite assembly) and can handle multiple translation domains and multiple locales in one application instance.
+It supports both little-endian and big-endian MO files, automatic (header-based) encoding detection.
 
-NGettext currently not supports *.mo file headers (stored in mo file plural formulas, encoding, etc.).
-It uses precompiled plural formulas and supports custom plural formulas passed through API.
-It only supports little-endian MO files (witch produce most of popular platforms).
+NGettext currently not supports loading plural form rules from *.mo file headers.
+It uses precompiled plural form rules and supports custom plural form rules passed through API.
 
 
 
@@ -36,10 +36,36 @@ It's hard to build and maintain translation files and change locale inside your 
 * NGettext provides nice and simple API for translation.
 
 
+Building from the sources
+-------------------------
+
+### Building on Linux
+  
+  Requirements:
+    [Mono](http://www.go-mono.com/mono-downloads/download.html),
+    [NAnt](http://nant.sourceforge.net/).
+  
+  Execute the `nant` command in the project directory to build project with the Release configuration.
+
+### Building on Windows
+  
+  Requirements:
+    Microsoft .NET Framework 2.0 or higher,
+    [NAnt](http://nant.sourceforge.net/).
+  
+  Just run `build.bat` to build project with the Release configuration.
+
+
+
 Installation and usage
 ----------------------
 
-Add reference to `NGettext.dll` to your project.
+All you need to do is just install a [NuGet package](https://www.nuget.org/packages/NGettext/):
+```
+PM> Install-Package NGettext
+```
+
+Alternatively you can download [compiled binaries](https://github.com/neris/NGettext/releases) or the [source code](https://github.com/neris/NGettext) and add a reference to `NGettext.dll` or `NGettext.csproj` to your project.
 
 
 Now you can use NGettext in your code:
@@ -62,6 +88,20 @@ Now you can use NGettext in your code:
 
 
 
+### Culture-specific message formatting
+
+```csharp
+	// All translation methods support String.Format optional arguments
+	catalog.GetString("Hello, {0}!", "World");
+	
+	// Catalog's current locale will be used to format messages correctly
+	catalog.GetString("Here's a number: {0}!", 1.23);
+	// Will return "Here's a number: 1.23!" for en_US locale
+	// But something like this will be returned for ru_RU locale with Russian translation: "А вот и номер: 1,23!"
+```
+
+
+
 ### Plural forms
 
 ```csharp
@@ -74,6 +114,11 @@ Now you can use NGettext in your code:
 	catalog.GetPluralString("You have {0} apple.", "You have {0} apples.", 5, 5);
 	// Returns translated plural massage: "You have 5 apples." (for en_US locale)
 	// First “5” used in plural forms determination; second — in String.Format method
+
+
+	// Example plural forms usage for fractional numbers:
+	catalog.GetPluralString("You have {0} apple.", "You have {0} apples.", (long)1.23, 1.23);
+	// Internal String.Format will be used in context of catalog's locale and formats objects respectively
 ```
 
 
@@ -106,7 +151,7 @@ Now you can use NGettext in your code:
 
 ```csharp
 	Stream moFileStream = File.OpenRead("path/to/domain.mo");
-	ICatalog catalog = new Catalog(moFileStream);
+	ICatalog catalog = new Catalog(moFileStream, CultureInfo.CreateSpecificCulture("en-US"));
 ```
 
 
@@ -114,7 +159,7 @@ Now you can use NGettext in your code:
 ### Custom plural formulas
 
 ```csharp
-	catalog.PluralForm.SetCustomFormula(cultureInfo, n => ( n == 1 ? 0 : 1 ));
+	catalog.PluralRule = new PluralRule(numPlurals, n => ( n == 1 ? 0 : 1 ));
 ```
 
 

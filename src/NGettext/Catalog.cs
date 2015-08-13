@@ -81,7 +81,7 @@ namespace NGettext
 		{
 			try
 			{
-				this.Load(CultureInfo, domain, localeDir);
+				this.Load(this.CultureInfo, domain, localeDir);
 			}
 			catch (FileNotFoundException exception)
 			{
@@ -101,7 +101,7 @@ namespace NGettext
 		{
 			try
 			{
-				this.Load(CultureInfo, domain, localeDir);
+				this.Load(this.CultureInfo, domain, localeDir);
 			}
 			catch (FileNotFoundException exception)
 			{
@@ -140,35 +140,40 @@ namespace NGettext
 		}
 
 		/// <summary>
-		/// Load translations from given MO file stream using given encoding (UTF-8 encoding by default).
+		/// Load translations from given MO file stream using given encoding.
 		/// </summary>
+		/// <remarks>
+		/// By default, parser will try to detect file encoding automatically with fallback to UTF-8 encoding.
+		/// If you specify any encoding in this method, auto-detect will be turned off and given encoding will be used instead.
+		/// </remarks>
 		/// <param name="moStream">Stream that contain binary data in the MO file format</param>
-		/// <param name="encoding">File encoding (UTF-8 by default)</param>
+		/// <param name="encoding">File encoding (auto detect by default)</param>
 		public void Load(Stream moStream, Encoding encoding = null)
 		{
 			var parser = new MoFileParser();
 			if (encoding != null)
 			{
+				parser.DetectEncoding = false;
 				parser.Encoding = encoding;
 			}
 
-			var translations = parser.GetTranslations(moStream);
+			parser.Parse(moStream);
 
-			this.Translations = translations;
+			this.Translations = parser.Translations;
 		}
 
 		private string _FindTranslationFile(CultureInfo cultureInfo, string domain, string localeDir)
 		{
-			var posibleFiles = new [] {
+			var possibleFiles = new [] {
 				this._GetFileName(localeDir, domain, cultureInfo.Name),
 				this._GetFileName(localeDir, domain, cultureInfo.TwoLetterISOLanguageName)
 			};
 
-			foreach (var posibleFilePath in posibleFiles)
+			foreach (var possibleFilePath in possibleFiles)
 			{
-				if (File.Exists(posibleFilePath))
+				if (File.Exists(possibleFilePath))
 				{
-					return posibleFilePath;
+					return possibleFilePath;
 				}
 			}
 
